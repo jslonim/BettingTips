@@ -1,18 +1,20 @@
 
+from common import utilities
 from website_adapters.olbg import OLBG
-olbg = OLBG().get_matches()
+from website_adapters.pickwise import PicksWise 
 
-if olbg:
-    for i in range(0, len(olbg)):
-        print('')
-        print(f'Title: {olbg[i]['title']}')
-        print(f'Sport: {olbg[i]['sport']}')
-        print(f'Tournament: {olbg[i]['tournament']}')
-        print(f'Prediction: {olbg[i]['prediction']}')
-        print(f'Experts: {olbg[i]['experts']}')
-        print(f'Odds: {olbg[i]['odds']}')
-        print(f'Kelly Criterion: % {olbg[i]['kelly']}')   
-        print('')
-else:
-    print("No games worth betting on")
+matches = []
+matches.extend(OLBG().get_matches())
+matches.extend(PicksWise().get_matches())
+matches = utilities.BetUtilities.get_unique_objects_by_title(matches)
 
+for match in matches:
+    print('')
+    print(f'Title: {match['title']}')
+    print(f'Date: {match['date']}')
+    print(f'Sport: {match['sport']}')
+    print(f'Tournament: {match['tournament']}')
+    print(f'Prediction: {match['prediction']}')
+    print(f'Odds: {match['odds']}')
+    print(f'Kelly Criterion: % {match['kelly']}')   
+    print('')
