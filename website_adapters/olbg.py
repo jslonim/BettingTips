@@ -30,7 +30,7 @@ class OLBG:
         "i-sp-12": "Baseball"    
     }
     
-    def get_matches(self): 
+    async def get_matches(self): 
         matches = []
         soup = utilities.BetUtilities.get_website_html("https://www.olbg.com/betting-tips")
 
@@ -57,7 +57,9 @@ class OLBG:
             reason_link_url = reason_link["href"] if reason_link else None
             if reason_link_url:
                 match_website = utilities.BetUtilities.get_website_html('https://www.olbg.com/' + reason_link_url)
-                reason = match_website.find("div", class_="l-col-2 top-tips").find("p", class_="rw h-readable").string
+                reason_section = match_website.find("div", class_="l-col-2 top-tips")
+                if reason_section:
+                    reason = reason_section.find("p", class_="rw h-readable").string
 
             match = {
                 'title': title,

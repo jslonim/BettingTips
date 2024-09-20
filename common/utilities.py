@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
-from datetime import datetime
 from dateutil import parser
+import re
 
 class BetUtilities:
 
@@ -57,6 +57,10 @@ class BetUtilities:
         page = requests.get(url)
         soup = BeautifulSoup(page.content, "html.parser")
         return soup
+    
+    @staticmethod
+    def remove_text_within_parentheses(text):
+        return re.sub(r"\([^)]*\)", "", text)
     
     @staticmethod
     def convert_odds(odds, from_type="american", to_type="decimal"):

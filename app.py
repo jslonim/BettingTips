@@ -1,12 +1,21 @@
-
 from common import utilities
 from website_adapters.olbg import OLBG
 from website_adapters.pickwise import PicksWise 
+import asyncio
 
-matches = []
-matches.extend(OLBG().get_matches())
-#matches.extend(PicksWise().get_matches())
-matches = utilities.BetUtilities.get_unique_objects_by_title(matches)
+async def main():
+    website_adapters = [PicksWise(), OLBG()]  # Add more adapters as needed
+
+    coroutines = [adapter.get_matches() for adapter in website_adapters]
+    results = await asyncio.gather(*coroutines)
+
+    # Flatten the list of lists
+    matches = [match for sublist in results for match in sublist]
+
+    matches = utilities.BetUtilities.get_unique_objects_by_title(matches)
+    return matches
+
+matches = asyncio.run(main())
 
 for match in matches:
     print('')
