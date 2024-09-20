@@ -21,7 +21,13 @@ class OLBG:
         "i-sp-11": "Football",
         "i-sp-21": "Volleyball",
         "i-sp-8": "Snooker",
-        "i-sp-5": "Golf"
+        "i-sp-5": "Golf",
+        "i-sp-17": "Cycling",
+        "i-sp-14": "Racing",
+        "i-sp-15": "Darts",
+        "i-sp-9": "College Football",
+        "i-sp-13": "Skating",
+        "i-sp-12": "Baseball"    
     }
     
     def get_matches(self): 
@@ -54,7 +60,8 @@ class OLBG:
                 'confidence': confidence,
                 'kelly': kelly_criterion,
                 'tournament' : tournament,
-                'sport': sport
+                'sport': sport,
+                'source': 'OLBG'
             }
 
             if kelly_criterion and kelly_criterion > 1:

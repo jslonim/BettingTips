@@ -17,4 +17,5 @@ for match in matches:
     print(f'Prediction: {match['prediction']}')
     print(f'Odds: {match['odds']}')
     print(f'Kelly Criterion: % {match['kelly']}')   
+    print(f'Source: {match['source']}')
     print('')

@@ -41,7 +41,8 @@ class PicksWise:
                 'confidence': confidence,
                 'kelly': kelly_criterion,
                 'tournament' : None,
-                'sport': sport
+                'sport': sport,
+                'source': 'Pickwise'
             }
 
             if kelly_criterion and kelly_criterion > 1:
