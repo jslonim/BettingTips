@@ -33,6 +33,8 @@ class PicksWise:
 
             decimal_odds = utilities.BetUtilities.convert_odds(odds)
             kelly_criterion = utilities.BetUtilities.kelly_criterion(confidence, decimal_odds)
+
+
             match = {
                 'title': title.replace(" v ", " vs "),
                 'date': utilities.BetUtilities.convert_datetime_format(match_date),

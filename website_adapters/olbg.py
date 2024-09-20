@@ -51,12 +51,20 @@ class OLBG:
             sport = None
             if 'i-sp-' in sport_class:
                 sport = self.SPORT_ICON_DICT.get(sport_class)
+            
+            reason = None
+            reason_link = result.find("a", class_="h-rst-lnk")
+            reason_link_url = reason_link["href"] if reason_link else None
+            if reason_link_url:
+                match_website = utilities.BetUtilities.get_website_html('https://www.olbg.com/' + reason_link_url)
+                reason = match_website.find("div", class_="l-col-2 top-tips").find("p", class_="rw h-readable").string
 
             match = {
                 'title': title,
                 'date': date,
                 'prediction': prediction,
                 'odds': odds,
+                'reason': reason,
                 'confidence': confidence,
                 'kelly': kelly_criterion,
                 'tournament' : tournament,
