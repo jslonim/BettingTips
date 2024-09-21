@@ -2,6 +2,9 @@ from common import utilities
 from website_adapters.olbg import OLBG
 from website_adapters.pickwise import PicksWise 
 import asyncio
+from dotenv import load_dotenv
+
+load_dotenv()
 
 async def main():
     website_adapters = [PicksWise(), OLBG()]  # Add more adapters as needed
